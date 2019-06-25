@@ -1,0 +1,44 @@
+/**
+ * A mixin targeting a specific device width and larger.
+ * These are the available targets: 'sm', 'md', 'lg', 'xl'
+ *
+ * @param {string} $media The target media
+ * @see https://benjaminhorn.io/code/responsive-sass-mixin-helpers/
+ */
+@mixin respond-from($media) {
+    @each $bp in $breakpoints {
+        @if $media=nth($list: $bp, $n: 1) {
+            @media (min-width: #{nth($list: $bp, $n: 2)}) {
+                @content;
+            }
+        }
+    }
+}
+
+/**
+ * Generates classes for a grid of columns, prefixed by size.
+ * The result will be .col-[size]-[col]-[total-columns] E.g. .col-xs-6-12
+ *
+ * @param {string} $bp The name of the breakpoint target (e.g. xs, sm, md, lg, xl, etc.)
+ * @param {int} $columns Amount of columns
+ * @see https://benjaminhorn.io/code/simple-sass-mixins-for-generating-grids-similar-to-bootstrap/
+ */
+@mixin col-generator($bp, $columns) {
+    @for $i from 1 through $columns {
+        $width: percentage($i / $columns);
+
+        @if $bp=='root' {
+            @at-root &__col--#{$i}-#{$columns} {
+                flex: 1 0 $width;
+                max-width: $width;
+            }
+        }
+
+        @else {
+            @at-root &__col--#{$bp}-#{$i}-#{$columns} {
+                flex: 1 0 $width;
+                max-width: $width;
+            }
+        }
+    }
+}
