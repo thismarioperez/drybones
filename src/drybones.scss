@@ -1,0 +1,86 @@
+@import 'config';
+@import 'mixins';
+
+.db {
+    &-container {
+        padding: ($gutter / 2) 0;
+    }
+
+    &-grid {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 ($gutter / -2);
+    }
+
+    &-grid > [class^="db-col"] {
+        padding: ($gutter / 2);
+    }
+
+    &-grid > &-col {
+        flex: 1;
+
+        @include col-generator-base(12);
+        @include col-generator-base(6);
+        @include col-generator-base(4);
+        @include col-generator-base(3);
+        @include col-generator-base(2);
+        @include col-generator-base(1);
+    
+        @include respond-from('xs') {
+            @include col-generator('xs', 12);
+            @include col-generator('xs', 6);
+            @include col-generator('xs', 4);
+            @include col-generator('xs', 3);
+            @include col-generator('xs', 2);
+            @include col-generator('xs', 1);
+        }
+    
+        @include respond-from('sm') {
+            @include col-generator('sm', 12);
+            @include col-generator('sm', 6);
+            @include col-generator('sm', 4);
+            @include col-generator('sm', 3);
+            @include col-generator('sm', 2);
+            @include col-generator('sm', 1);
+        }
+    
+        @include respond-from('md') {
+            @include col-generator('md', 12);
+            @include col-generator('md', 6);
+            @include col-generator('md', 4);
+            @include col-generator('md', 3);
+            @include col-generator('md', 2);
+            @include col-generator('md', 1);
+        }
+    
+        @include respond-from('lg') {
+            @include col-generator('lg', 12);
+            @include col-generator('lg', 6);
+            @include col-generator('lg', 4);
+            @include col-generator('lg', 3);
+            @include col-generator('lg', 2);
+            @include col-generator('lg', 1);
+        }
+    
+        @include respond-from('xl') {
+            @include col-generator('xl', 12);
+            @include col-generator('xl', 6);
+            @include col-generator('xl', 4);
+            @include col-generator('xl', 3);
+            @include col-generator('xl', 2);
+            @include col-generator('xl', 1);
+        }
+    }
+
+    &-container.-no-gutter  {
+        padding: 0;
+    }
+
+    &-container.-no-gutter > &-grid {
+        margin: 0;
+    }
+
+    &-container.-no-gutter > &-grid > &-col {
+        padding: 0;
+    }
+}
