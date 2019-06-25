@@ -1,0 +1,32 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: aliceblue;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 7vw;
+}
+
+.box {
+    height: 150px;
+    background: steelblue;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
