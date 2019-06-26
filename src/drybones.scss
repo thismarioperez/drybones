@@ -1,9 +1,9 @@
 @import 'config';
 @import 'mixins';
 
-.db-container {
+.container {
     width: 100%;
-    padding: 0 ($gutter /2 );
+    padding: 0 ($grid-gutter /2);
     margin: 0 auto;
 
     &--fluid {
@@ -11,76 +11,38 @@
     }
 }
 
-.db-grid {
+.grid {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 ($gutter / -2);
+    margin: 0 0 0 ($grid-gutter * -1);
 
-    &__col {
-        flex: 1;
-        padding: ($gutter / 2);
-
-        @include col-generator('xx', 12);
-        @include col-generator('xx', 6);
-        @include col-generator('xx', 4);
-        @include col-generator('xx', 3);
-        @include col-generator('xx', 2);
-        @include col-generator('xx', 1);
-    
-        @include respond-from('xs') {
-            @include col-generator('xs', 12);
-            @include col-generator('xs', 6);
-            @include col-generator('xs', 4);
-            @include col-generator('xs', 3);
-            @include col-generator('xs', 2);
-            @include col-generator('xs', 1);
-        }
-    
-        @include respond-from('sm') {
-            @include col-generator('sm', 12);
-            @include col-generator('sm', 6);
-            @include col-generator('sm', 4);
-            @include col-generator('sm', 3);
-            @include col-generator('sm', 2);
-            @include col-generator('sm', 1);
-        }
-    
-        @include respond-from('md') {
-            @include col-generator('md', 12);
-            @include col-generator('md', 6);
-            @include col-generator('md', 4);
-            @include col-generator('md', 3);
-            @include col-generator('md', 2);
-            @include col-generator('md', 1);
-        }
-    
-        @include respond-from('lg') {
-            @include col-generator('lg', 12);
-            @include col-generator('lg', 6);
-            @include col-generator('lg', 4);
-            @include col-generator('lg', 3);
-            @include col-generator('lg', 2);
-            @include col-generator('lg', 1);
-        }
-    
-        @include respond-from('xl') {
-            @include col-generator('xl', 12);
-            @include col-generator('xl', 6);
-            @include col-generator('xl', 4);
-            @include col-generator('xl', 3);
-            @include col-generator('xl', 2);
-            @include col-generator('xl', 1);
-        }
-    }
-
-    /**
-     * Modifiers
-     */
+    // Modifiers
     &--no-gutters {
         margin: 0;
     }
 
-    &--no-gutters > &__col {
+    &--no-gutters>.col {
         padding: 0;
     }
+}
+
+.col {
+    flex: 1;
+    order: ($grid-columns + 1);
+    padding: $grid-gutter 0 0 $grid-gutter;
+
+    // Modifiers
+    @include col-generator-base($grid-columns);
+    @include col-generator('xs', $grid-columns);
+    @include col-generator('sm', $grid-columns);
+    @include col-generator('md', $grid-columns);
+    @include col-generator('lg', $grid-columns);
+    @include col-generator('xl', $grid-columns);
+
+    @include order-generator-base($grid-columns);
+    @include order-generator('xs', $grid-columns);
+    @include order-generator('sm', $grid-columns);
+    @include order-generator('md', $grid-columns);
+    @include order-generator('lg', $grid-columns);
+    @include order-generator('xl', $grid-columns);
 }
