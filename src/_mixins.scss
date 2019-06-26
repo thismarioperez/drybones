@@ -17,7 +17,7 @@
 
 /**
  * Generates classes for a grid of columns, prefixed by size.
- * The result will be -[col]/[columns]-[breakpoint] E.g. .-6/12-xs
+ * The result will be [breakpoint]-[col]-[columns] E.g. .xs-6-12
  *
  * @param {string} $bp The name of the breakpoint target (e.g. xs, sm, md, lg, xl, etc.)
  * @param {int} $columns Amount of columns
@@ -25,24 +25,7 @@
  */
 @mixin col-generator($bp, $columns) {
     @for $i from 1 through $columns {
-        &.db-col--#{$i}-#{$columns}-#{$bp} {
-            $width: percentage($i / $columns);
-            flex: 1 0 $width;
-            max-width: $width;
-        }
-    }
-}
-
-/**
- * Generates classes for a grid of columns
- * The result will be -[col]/[columns] E.g. .-6/12
- *
- * @param {int} $columns Amount of columns
- * @see https://benjaminhorn.io/code/simple-sass-mixins-for-generating-grids-similar-to-bootstrap/
- */
-@mixin col-generator-base($columns) {
-    @for $i from 1 through $columns {
-        &.db-col--#{$i}-#{$columns} {
+        &.-#{$bp}-#{$i}-#{$columns} {
             $width: percentage($i / $columns);
             flex: 1 0 $width;
             max-width: $width;

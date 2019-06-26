@@ -1,30 +1,25 @@
 @import 'config';
 @import 'mixins';
 
-.db {
-    &-container {
-        padding: ($gutter / 2) 0;
-    }
+.db-container {
+    padding: ($gutter / 2) 0;
+}
 
-    &-grid {
-        display: flex;
-        flex-flow: row wrap;
-        margin: 0 ($gutter / -2);
-    }
+.db-grid {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 ($gutter / -2);
 
-    &-grid > [class^="db-col"] {
-        padding: ($gutter / 2);
-    }
-
-    &-grid > &-col {
+    &__col {
         flex: 1;
+        padding: ($gutter / 2);
 
-        @include col-generator-base(12);
-        @include col-generator-base(6);
-        @include col-generator-base(4);
-        @include col-generator-base(3);
-        @include col-generator-base(2);
-        @include col-generator-base(1);
+        @include col-generator('xx', 12);
+        @include col-generator('xx', 6);
+        @include col-generator('xx', 4);
+        @include col-generator('xx', 3);
+        @include col-generator('xx', 2);
+        @include col-generator('xx', 1);
     
         @include respond-from('xs') {
             @include col-generator('xs', 12);
@@ -72,15 +67,14 @@
         }
     }
 
-    &-container.-no-gutter  {
-        padding: 0;
-    }
-
-    &-container.-no-gutter > &-grid {
+    /**
+     * Modifiers
+     */
+    &--no-gutters {
         margin: 0;
     }
 
-    &-container.-no-gutter > &-grid > &-col {
+    &--no-gutters > &__col {
         padding: 0;
     }
 }
