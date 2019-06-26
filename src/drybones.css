@@ -20,7 +20,11 @@
  * @see https://benjaminhorn.io/code/simple-sass-mixins-for-generating-grids-similar-to-bootstrap/
  */
 .db-container {
-  padding: 15px 0; }
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto; }
+  .db-container--fluid {
+    padding: 0; }
 
 .db-grid {
   display: flex;
