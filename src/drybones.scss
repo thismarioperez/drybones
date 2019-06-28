@@ -4,7 +4,7 @@
 
 .container {
     width: 100%;
-    padding: 0 (map-get($grid, 'gutter') /2);
+    padding: 0 ($grid-gutter /2);
     margin: 0 auto;
 
     &--fluid {
@@ -15,7 +15,7 @@
 .grid {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 0 0 (map-get($grid, 'gutter') * -1);
+    margin: 0 0 0 ($grid-gutter * -1);
 
     // Modifiers
     &--no-gutters {
@@ -65,17 +65,13 @@
 
 .col {
     flex: 1;
-    padding: map-get($grid, 'gutter') 0 0 map-get($grid, 'gutter');
+    padding: $grid-gutter 0 0 $grid-gutter;
 
     // Modifiers
-    @include col-generator('base', map-get($grid, 'columns'));
-    @include order-generator('base', map-get($grid, 'columns'));
-
-    @each $bp in $breakpoints {
-        $media: nth($bp, 1);
-        @include respond-from($media) {
-            @include col-generator($media, map-get($grid, 'columns'));
-            @include order-generator($media, map-get($grid, 'columns'));
+    @each $bp in map-keys($breakpoints) {
+        @include respond-from($bp) {
+            @include col-generator($bp, $grid-columns);
+            @include order-generator($bp, $grid-columns);
         }
     }
 
