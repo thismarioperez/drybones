@@ -83,15 +83,34 @@
     @include order-generator('xl', $grid-columns);
 
     &--align-self-start {
-        align-self: flex-start;
+        align-self: start;
     }
+
     &--align-self-center {
         align-self: center;
     }
+
     &--align-self-end {
         align-self: flex-end;
     }
+
     &--align-self-stretch {
         align-self: stretch;
+    }
+
+    &--justify-self-start {
+        justify-self: start;
+    }
+
+    &--justify-self-center {
+        justify-self: center;
+    }
+
+    &--justify-self-stretch {
+        justify-self: stretch;
+    }
+
+    &--justify-self-end {
+        justify-self: end;
     }
 }
