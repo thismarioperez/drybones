@@ -4,14 +4,17 @@
     "description": "A simple Flexbox based grid system",
     "main": "index.js",
     "scripts": {
-        "build": "node-sass --omit-source-map-url ./src/drybones.scss -o ./src && postcss ./src/*.css -u autoprefixer -d dist/",
-        "postbuild": "cleancss -o ./dist/drybones.min.css ./dist/drybones.css"
+        "scss": "node-sass ./src/drybones.scss -o ./dist",
+        "autoprefix": "postcss -u autoprefixer --autoprefixer.browsers default -r dist/*",
+        "minify": "cleancss -d -o ./dist/drybones.min.css ./dist/drybones.css",
+        "build": "npm run scss && npm run autoprefix && npm run minify",
+        "watch": "nodemon -e scss -x \"npm run build\""
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/thismarioperez/drybones.git"
     },
-    "author": "info@thismarioperez.com",
+    "author": "hello@thismarioperez.com",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/thismarioperez/drybones/issues"
@@ -21,6 +24,7 @@
         "autoprefixer": "^9.6.0",
         "clean-css-cli": "^4.3.0",
         "node-sass": "^4.12.0",
+        "nodemon": "^1.19.1",
         "postcss": "^7.0.17",
         "postcss-cli": "^6.1.2"
     }
