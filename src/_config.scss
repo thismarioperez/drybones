@@ -1,21 +1,18 @@
 /**
  * Breakpoints
  */
-$bp-xs: 576px;
-$bp-sm: 768px;
-$bp-md: 992px;
-$bp-lg: 1200px;
-$bp-xl: 1400px;
 $breakpoints: (
-    ('xs', $bp-xs),
-    ('sm', $bp-sm),
-    ('md', $bp-md),
-    ('lg', $bp-lg),
-    ('xl', $bp-xl)
-);
+    'xs': 576px,
+    'sm': 768px,
+    'md': 992px,
+    'lg': 1200px,
+    'xl': 1400px
+) !default;
 
 /**
- * Sizing
+ * Grid Sizing
  */
-$grid-gutter: 30px;
-$grid-columns: 12;
+$grid: (
+    'gutter': 1rem,
+    'columns': 12
+) !default;

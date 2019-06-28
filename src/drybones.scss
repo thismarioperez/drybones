@@ -1,9 +1,10 @@
 @import 'config';
+@import 'utility';
 @import 'mixins';
 
 .container {
     width: 100%;
-    padding: 0 ($grid-gutter /2);
+    padding: 0 (map-get($grid, 'gutter') /2);
     margin: 0 auto;
 
     &--fluid {
@@ -14,7 +15,7 @@
 .grid {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 0 0 ($grid-gutter * -1);
+    margin: 0 0 0 (map-get($grid, 'gutter') * -1);
 
     // Modifiers
     &--no-gutters {
@@ -64,23 +65,19 @@
 
 .col {
     flex: 1;
-    order: ($grid-columns + 1);
-    padding: $grid-gutter 0 0 $grid-gutter;
+    padding: map-get($grid, 'gutter') 0 0 map-get($grid, 'gutter');
 
     // Modifiers
-    @include col-generator-base($grid-columns);
-    @include col-generator('xs', $grid-columns);
-    @include col-generator('sm', $grid-columns);
-    @include col-generator('md', $grid-columns);
-    @include col-generator('lg', $grid-columns);
-    @include col-generator('xl', $grid-columns);
+    @include col-generator('base', map-get($grid, 'columns'));
+    @include order-generator('base', map-get($grid, 'columns'));
 
-    @include order-generator-base($grid-columns);
-    @include order-generator('xs', $grid-columns);
-    @include order-generator('sm', $grid-columns);
-    @include order-generator('md', $grid-columns);
-    @include order-generator('lg', $grid-columns);
-    @include order-generator('xl', $grid-columns);
+    @each $bp in $breakpoints {
+        $media: nth($bp, 1);
+        @include respond-from($media) {
+            @include col-generator($media, map-get($grid, 'columns'));
+            @include order-generator($media, map-get($grid, 'columns'));
+        }
+    }
 
     &--align-self-start {
         align-self: start;
